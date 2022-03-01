@@ -17,9 +17,9 @@ public class CustomizeCharacter : MonoBehaviour
     public GameObject[] pants;
     private int currentpants;
 
-    public Color[] teamColor;
+    public Color[] teamColor; 
     public Color[] skinColor;
-    public Color[] hairColor;
+    public Color[] hairColor; public int currentHairColor; public Slider hairSlider;
     public Color[] coatColor;
     public Color[] pantsColor;
     public Color[] bootsColor;
@@ -84,6 +84,17 @@ public class CustomizeCharacter : MonoBehaviour
     public void ChangeHairColor(int index)
     {
         hairMat.color = hairColor[index];
+        currentHairColor = index;
+        hairSlider.value = 0;
+    }
+
+    public void TuneHairColor(int value)
+    {
+        //change this to change hue and saturation
+        //hairMat.color = new Color(currentHairColor.r + hairSlider.value * 0.02f, currentHairColor.g+hairSlider.value*-0.02f, currentHairColor.b);
+        float H, S, V;
+        Color.RGBToHSV(hairColor[currentHairColor], out H, out S, out V);
+        hairMat.color = Color.HSVToRGB(H + 0.01f*hairSlider.value,S + 0.02f * hairSlider.value, V + 0.05f * hairSlider.value);
     }
 
     public void ChangeCoatColor(int index)
