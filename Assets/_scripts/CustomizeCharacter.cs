@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-// rewrite this 
+// rewrite this code
 
 public class CustomizeCharacter : MonoBehaviour
 {
@@ -18,18 +18,16 @@ public class CustomizeCharacter : MonoBehaviour
     private int currentpants;
 
     public Color[] teamColor; 
-    public Color[] skinColor;
+    public Color[] skinColor; public int currentSkinColor; public Slider skinSlider;
     public Color[] hairColor; public int currentHairColor; public Slider hairSlider;
-    public Color[] coatColor;
-    public Color[] pantsColor;
-    public Color[] bootsColor;
+    public Color[] coatColor; public int currentCoatColor; public Slider coatSlider;
+    public Color[] pantsColor; public int currentPantsColor; public Slider pantsSlider;
 
     public Material teamMat;
     public Material skinMat;
     public Material hairMat;
     public Material coatMat;
     public Material pantsMat;
-    public Material bootsMat;
 
     
 
@@ -100,22 +98,53 @@ public class CustomizeCharacter : MonoBehaviour
     public void ChangeCoatColor(int index)
     {
         coatMat.color = coatColor[index];
+        currentCoatColor = index;
+        coatSlider.value = 0;
+    }
+
+    public void TuneCoatColor(float value)
+    {
+        //change this to change hue and saturation
+        //hairMat.color = new Color(currentHairColor.r + hairSlider.value * 0.02f, currentHairColor.g+hairSlider.value*-0.02f, currentHairColor.b);
+        float H, S, V;
+        value = coatSlider.value;
+        Color.RGBToHSV(coatColor[currentCoatColor], out H, out S, out V);
+        coatMat.color = Color.HSVToRGB(H + 0.01f * value, S + 0.02f * value, V + 0.05f * value);
     }
 
     public void ChangeSkinColor(int index)
     {
         skinMat.color = skinColor[index];
+        currentSkinColor = index;
+        skinSlider.value = 0;
+    }
+
+    public void TuneSkinColor(float value)
+    {
+        //change this to change hue and saturation
+        //hairMat.color = new Color(currentHairColor.r + hairSlider.value * 0.02f, currentHairColor.g+hairSlider.value*-0.02f, currentHairColor.b);
+        float H, S, V;
+        value = skinSlider.value;
+        Color.RGBToHSV(skinColor[currentSkinColor], out H, out S, out V);
+        skinMat.color = Color.HSVToRGB(H + 0.01f * value, S + 0.02f * value, V + 0.05f * value);
     }
 
     public void ChangePantsColor(int index)
     {
         pantsMat.color = pantsColor[index];
-    }
-    public void ChangeBootsColor(int index)
-    {
-        bootsMat.color = bootsColor[index];
+        currentPantsColor = index;
+        pantsSlider.value = 0;
     }
 
+    public void TunePantsColor(float value)
+    {
+        //change this to change hue and saturation
+        //hairMat.color = new Color(currentHairColor.r + hairSlider.value * 0.02f, currentHairColor.g+hairSlider.value*-0.02f, currentHairColor.b);
+        float H, S, V;
+        value = pantsSlider.value;
+        Color.RGBToHSV(pantsColor[currentPantsColor], out H, out S, out V);
+        pantsMat.color = Color.HSVToRGB(H + 0.01f * value, S + 0.02f * value, V + 0.05f * value);
+    }
 
     public void ChangePants()
     {
@@ -138,6 +167,7 @@ public class CustomizeCharacter : MonoBehaviour
     void Start()
     {
         ChangeHair();
+        ChangeHat();
         ChangePants();   
     }
 
