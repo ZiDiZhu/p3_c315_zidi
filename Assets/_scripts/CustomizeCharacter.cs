@@ -12,8 +12,10 @@ public class CustomizeCharacter : MonoBehaviour
     public GameObject playerName; //refers to the text mesh display above player
     public GameObject[] hair;
     private int currentHair;
-    public GameObject[] coat;
-    private int currentCoat;
+    public GameObject[] hat;
+    private int currentHat;
+    public GameObject[] pants;
+    private int currentpants;
 
     public Color[] teamColor;
     public Color[] skinColor;
@@ -47,6 +49,24 @@ public class CustomizeCharacter : MonoBehaviour
             hair[i].SetActive(false);
         }
         hair[currentHair].SetActive(true);
+    }
+
+    public void ChangeHat()
+    {
+        if (currentHat >= hat.Length - 1)
+        {
+            currentHat = 0;
+        }
+        else
+        {
+            currentHat++;
+        }
+
+        for (int i = 0; i < hair.Length; i++)
+        {
+            hat[i].SetActive(false);
+        }
+        hat[currentHat].SetActive(true);
     }
 
     public void ChangeName(string name)
@@ -86,28 +106,28 @@ public class CustomizeCharacter : MonoBehaviour
     }
 
 
-    public void ChangeCoat()
+    public void ChangePants()
     {
-        if (currentCoat >= coat.Length - 1)
+        if (currentpants >= pants.Length - 1)
         {
-            currentCoat = 0;
+            currentpants = 0;
         }
         else
         {
-            currentCoat++;
+            currentpants++;
         }
 
-        for (int i = 0; i < coat.Length; i++)
+        for (int i = 0; i < pants.Length; i++)
         {
-            coat[i].SetActive(false);
+            pants[i].SetActive(false);
         }
-        coat[currentCoat].SetActive(true);
+        pants[currentpants].SetActive(true);
     }
     // Start is called before the first frame update
     void Start()
     {
         ChangeHair();
-        ChangeCoat();   
+        ChangePants();   
     }
 
     private void Update()
