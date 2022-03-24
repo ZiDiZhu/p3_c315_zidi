@@ -1,6 +1,9 @@
 # p3_c315_zidi
 sandbox character dress up thing prototype
 
+### warning: currently main branch might be unplayable (rewrote the code, didn't implement yet.)
+### [Playable Older Version](https://github.com/ZiDiZhu/p3_c315_zidi/tree/old_version)
+
 Playtest Questionnaire
 1. Anything that felt uncomfortable/ unintuitive in this prototype (aside from the lack of goal and context)?
 
